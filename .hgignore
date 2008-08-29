@@ -1,6 +1,9 @@
 syntax: glob
+*.bak
+db
+flickr.conf
+keys.py
+output
 *.pyc
 *.sw?
-db
-keys.py
 zeo.sh
