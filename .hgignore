@@ -1,2 +1,6 @@
-Syntax: glob
+syntax: glob
+*.pyc
+*.sw?
+db
 keys.py
+zeo.sh

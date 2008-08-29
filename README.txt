@@ -40,10 +40,15 @@ GETTING STARTED
 * Copy keys.py.tmpl to keys.py, and enter your flickr API keys.
 
 * ZODB:
-    * Install ZODB: http://wiki.zope.org/ZODB/FrontPage
-    * Get a ZODB server running, e.g. ./zeo.sh
+    * Install ZODB. For example:
+        easy_install ZODB3
+    * Get a ZODB server running, e.g. copy zeo.sh.tmpl to zeo.sh, and run
+        ./zeo.sh
+    If you like, you can edit zeo.sh to explicitly specify the hostname.
+    * Copy flickr.conf.tmpl to flickr.conf, and edit the HOSTNAME to match the
+    host on which the ZEO server was launched.
 
-* Try running ./searchspider.py
+* Run ./searchspider.py to begin accumulating a corpus.
 
 
 SOME DETAILS
