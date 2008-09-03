@@ -10,8 +10,8 @@ metadata to concoct the correct URL.
 Written by Joseph Turian
     <lastname at iro dot umontreal dot ca>
 
-Available at:
-    http://www.pylearn.org/flickorpus/
+Currently available at:
+    hg clone http://pylearn.org/hg/flickorpus
 
 LICENSE
 -------
@@ -29,6 +29,9 @@ REQUIREMENTS
 * Beej's Python Flickr API: http://flickrapi.sourceforge.net/
 
 * ZODB: http://wiki.zope.org/ZODB/FrontPage
+
+* Our python common library, in your PYTHONPATH:
+    hg clone http://pylearn.org/hg/common
 
 
 GETTING STARTED
@@ -89,6 +92,14 @@ I have not done so, though. Email me for more details.
 
 ./tags.py
     For every image in the ZODB, retrieve its tags and output them.
+
+BUGS
+----
+
+Doomie found a bug in the database initialization:
+"So I managed to quickly hack a fix to the problem by simply initializing the
+dictionary of objects in the DB. Wonder if there's a cleverer fix for that :)
+"
 
 COMMENTS, QUESTIONS, ETC.
 -------------------------
