@@ -48,16 +48,23 @@ GETTING STARTED
 * ZODB:
     * Install ZODB. For example:
         easy_install ZODB3
-    * Get a ZODB server running, e.g. copy zeo.sh.tmpl to zeo.sh, and run
         mkdir db/
-        ./zeo.sh
-    If you like, you can edit zeo.sh to explicitly specify the hostname.
 
-    * Copy flickr.conf.tmpl to flickr.conf, and edit the HOSTNAME to match the
-    host on which the ZEO server was launched.
+    * If you want only one local ZODB instance (simpler):
+        * Copy flickr-local.conf to flickr.conf
+    * Or, if you want to allow multiple clients to save data to your
+    ZODB instance (more flexible):
+        * Get a ZODB server running, e.g. copy zeo.conf.tmpl to zeo.conf,
+        (optionally) edit zeo.conf and zeo.sh, and run
+            ./zeo.sh
+        If you like, you can edit zeo.sh to explicitly specify the hostname.
+
+        * Copy flickr.conf.tmpl to flickr.conf, and edit the HOSTNAME to match the
+        host on which the ZEO server was launched.
 
 * Run ./searchspider.py to begin accumulating a corpus.
-
+If you do not see any progress within a few seconds, and you are using the
+client/server ZODB approach (above), try using the local ZODB instance.
 
 SOME DETAILS
 ------------
