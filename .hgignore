@@ -6,4 +6,4 @@ keys.py
 output
 *.pyc
 *.sw?
-zeo.sh
+zeo.conf

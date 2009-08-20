@@ -26,9 +26,9 @@ REQUIREMENTS
 
 * Python
 
-* Beej's Python Flickr API: http://flickrapi.sourceforge.net/
+* Beej's Python Flickr API: <http://flickrapi.sourceforge.net/>
 
-* ZODB: http://wiki.zope.org/ZODB/FrontPage
+* ZODB: <http://wiki.zope.org/ZODB/FrontPage>
 
 * Our python common library, in your PYTHONPATH:
     hg clone http://pylearn.org/hg/common
@@ -37,8 +37,11 @@ REQUIREMENTS
 GETTING STARTED
 ---------------
 
-* Get the source code:
+* Get the source code, in a location present in your PYTHONPATH:
     hg clone http://pylearn.org/hg/flickorpus
+
+* Install Beej's Python Flickr API:
+    easy_install flickapr
 
 * Copy keys.py.tmpl to keys.py, and enter your flickr API keys.
 
@@ -46,8 +49,10 @@ GETTING STARTED
     * Install ZODB. For example:
         easy_install ZODB3
     * Get a ZODB server running, e.g. copy zeo.sh.tmpl to zeo.sh, and run
+        mkdir db/
         ./zeo.sh
     If you like, you can edit zeo.sh to explicitly specify the hostname.
+
     * Copy flickr.conf.tmpl to flickr.conf, and edit the HOSTNAME to match the
     host on which the ZEO server was launched.
 
