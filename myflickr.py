@@ -5,9 +5,11 @@
 # Total number of results to find for each query
 #total = 10000
 total = 1000
+#total = 100
 
 # Number of search queries to return per page. No need to modify this.
 queries_per_page = 500
+#queries_per_page = 50
 
 #seed_queries = ["mountain", "balloon", "car", "statue", "plane", "man", "lake", "tree", "sky", "crowd", "snow", "sunset", "wedding", "dog", "park", "architecture", "beach", "water", "house", "garden", "bird", "insect"]
 seed_queries = ["mountain", "balloon", "car", "statue", "plane", "man", "lake", "tree", "sky", "crowd", "snow", "sunset", "wedding", "dog", "park", "architecture", "beach", "water", "house", "garden", "bird", "insect", "africa", "amsterdam", "animals", "architecture", "art", "australia", "baby", "band", "barcelona", "beach", "berlin", "bird", "birthday", "black", "blackandwhite", "blue", "boston", "bw", "california", "cameraphone", "camping", "canada", "canon", "car", "cat", "chicago", "china", "christmas", "church", "city", "clouds", "color", "concert", "cute", "dance", "day", "de", "dog", "england", "europe", "family", "festival", "film", "florida", "flower", "flowers", "food", "france", "friends", "fun", "garden", "geotagged", "germany", "girl", "girls", "graffiti", "green", "halloween", "hawaii", "hiking", "holiday", "home", "honeymoon", "house", "india", "ireland", "island", "italia", "italy", "japan", "july", "june", "kids", "la", "lake", "landscape", "light", "live", "london", "macro", "may", "me", "mexico", "mountain", "mountains", "museum", "music", "nature", "new", "newyork", "newyorkcity", "night", "nikon", "nyc", "ocean", "paris", "park", "party", "people", "photo", "photography", "photos", "portrait", "red", "river", "rock", "rome", "san", "sanfrancisco", "scotland", "sea", "seattle", "show", "sky", "sunset", "taiwan", "texas", "thailand", "tokyo", "toronto", "tour", "travel", "tree", "trees", "trip", "uk", "urban", "usa", "vacation", "vancouver", "washington", "water", "wedding", "white", "winter", "yellow", "york", "zoo"]
@@ -15,6 +17,7 @@ seed_queries = ["mountain", "balloon", "car", "statue", "plane", "man", "lake", 
 
 # Ignore these queries
 blacklist_queries = [ 'abigfave', 'bravo', 'aplusphoto', 'diamondclassphotographer', 'anawesomeshot', 'hdr', 'impressedbeauty', 'supershot', 'nikon', 'flickrdiamond', 'superbmasterpiece', 'canon', 'superaplus', 'blueribbonwinner', 'soe', 'macro', 'searchthebest', 'topf25', 'interestingness', 'outstandingshots', 'flickrsbest', 'platinumphoto', 'theperfectphotographer', 'photomatix', 'goldenphotographer', 'quality', 'theunforgettablepictures', 'i500', 'wow', 'superhearts', 'goldstaraward' ]
+#blacklist_queries = [ ]
 
 import flickrapi
 import keys
@@ -72,12 +75,16 @@ class Photo(Persistent):
         """
         if "_info" not in self.__dict__:
             sys.stderr.write("\tAbout to call flickr.photos_getInfo(photo_id=%s, secret=%s)...\n" % (self.id, self.secret))
-            self._info = flickr.photos_getInfo(photo_id = self.id, secret = self.secret).find('photo')
+            self._info = flickr.photos_getInfo(photo_id = self.id, secret = self.secret)
             self._p_changed = True
             sys.stderr.write("\t...done calling flickr.photos_getInfo(photo_id=%s, secret=%s)\n" % (self.id, self.secret))
         return self._info
 
+    def _get_photoinfo(self):
+        return self.info.find('photo')
+
     info = property(fget = _get_info, doc="Get the specific information for this image.")
+    photoinfo = property(fget = _get_photoinfo, doc="Get the specific photo information for this image.")
 
     def _get_tags(self):
         """
@@ -86,7 +93,7 @@ class Photo(Persistent):
         punctuation or spaces. We could also retrieve the raw tags,
         as entered by the user.
         """
-        return [t.text for t in self.info.find("tags").findall("tag")]
+        return [t.text for t in self.photoinfo.find("tags").findall("tag")]
     tags = property(fget = _get_tags)
 
 def photo_from_id(id):
@@ -168,7 +175,7 @@ def sort_tags(length=500):
                 score[t] += 1. / len(tags)
         except:
             sys.stderr.write("EXCEPTION\n")
-            1
+            pass
         i += 1
         sys.stderr.write("\tTag count done for %s images\n" % common.str.percent(i, tot))
         if i % 100 == 0: transaction.commit()
