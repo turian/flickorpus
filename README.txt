@@ -8,10 +8,10 @@ It never actually downloads images themselves, it merely has sufficient
 metadata to concoct the correct URL.
 
 Written by Joseph Turian
-    <lastname at iro dot umontreal dot ca>
+    <lastname at gmail dot com>
 
 Currently available at:
-    hg clone http://pylearn.org/hg/flickorpus
+    http://github.com/turian/flickorpus/tree
 
 LICENSE
 -------
