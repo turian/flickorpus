@@ -66,6 +66,8 @@ GETTING STARTED
 If you do not see any progress within a few seconds, and you are using the
 client/server ZODB approach (above), try using the local ZODB instance.
 
+* Run ./dumpdatabase.py to dump the database in a JSON format.
+
 SOME DETAILS
 ------------
 
