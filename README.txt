@@ -31,7 +31,10 @@ REQUIREMENTS
 * ZODB: <http://wiki.zope.org/ZODB/FrontPage>
 
 * Our python common library, in your PYTHONPATH:
-    hg clone http://pylearn.org/hg/common
+    git clone git://github.com/turian/common.git
+If you download 'common' into directory DIR, you have to put DIR in
+your PYTHONPATH:
+    export PYTHONPATH=$PYTHONPATH:$DIR
 
 
 GETTING STARTED
